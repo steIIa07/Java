@@ -7,13 +7,12 @@ import java.awt.image.BufferedImage;
 
 /**
  * Animation using AWT, Thread and double buffering
- * @author sxxxxxxx (Your student ID)
+ * @author s1290087 (Your student ID)
  */
 public class ExAWTAnimation extends Frame implements Runnable{
     //== Parameters of the animation figure ===================
-
-
-
+    private Point center = new Point(200, 100);
+    private int radius = 10;
 
     //=========================================================
     // Image data for double buffering
@@ -37,12 +36,12 @@ public class ExAWTAnimation extends Frame implements Runnable{
             // Use gBuffer to draw the figure on the buffer
             // (The parameters in the attributes should be used here)
 
-
-
-
-
-
-
+            gBuffer.setColor(Color.red);
+            gBuffer.drawOval(center.x - radius, center.y - radius, 2 * radius, 2 * radius);
+            gBuffer.setColor(Color.black);
+            gBuffer.drawString("The circle:",140,90);
+            gBuffer.drawString(String.format("center = (%d,%d);", center.x, center.y), 160,110);
+            gBuffer.drawString("radius = " + radius,160,130);
 
             //=========================================================
             // Copy the buffer to the canvas
@@ -61,9 +60,11 @@ public class ExAWTAnimation extends Frame implements Runnable{
                 Thread.sleep(100);
                 //=========================================================
                 // Change the parameters of the animation figure for next frame of the animation
-
-
-
+                
+                if(radius == 100)
+                    radius = 10;
+                else
+                    radius +=1;
 
                 //=========================================================
 
