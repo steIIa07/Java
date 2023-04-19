@@ -1,0 +1,1 @@
+The object of ArrayList class, num_list, contains String, Point, and integer types, and when calling num_list.get(), it casts to the String type, but the Point type cannot be cast, resulting in a run-time error.

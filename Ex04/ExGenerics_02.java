@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 
 public class ExGenerics_02 extends Applet{
-	ArrayList num_list = new ArrayList();
+	ArrayList<String> num_list = new ArrayList<String>();
 
 	public void init(){
 		this.setSize(400, 300);
@@ -25,7 +25,7 @@ public class ExGenerics_02 extends Applet{
 		super.paint(g);
 
 		for(int ii = 0 ; ii < num_list.size() ; ii++){
-			String s = (String)num_list.get(ii);
+			String s = num_list.get(ii);
 			g.drawString(s, 100, ii*20);
 		}
 	}
