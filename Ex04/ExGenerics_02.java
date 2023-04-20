@@ -1,32 +1,45 @@
-import java.applet.Applet;
+import java.awt.Canvas;
+import java.util.ArrayList;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.util.ArrayList;
 
-/*
-<applet code = "ExGenerics_02" width=400 height=400></applet>
-*/
-
-
-public class ExGenerics_02 extends Applet{
+/**
+ * @author s1290087 (Your student ID)
+ */
+public class ExGenerics_02 extends Frame{
 	ArrayList<String> num_list = new ArrayList<String>();
+	private final CVS cvs = new CVS();
 
-	public void init(){
-		this.setSize(400, 300);
+	// An inner canvas class 
+	private final class CVS extends Canvas {
+		@Override
+		public void paint(final Graphics g){
+			super.paint(g);
+
+			for(int ii = 0 ; ii < num_list.size() ; ii++){
+				String s = (String)num_list.get(ii);
+				g.drawString(s, 100, ii*20);
+			}
+		}
+	}
+	/**
+	* Constructor
+	* @param title the title of the window
+	*/
+	public ExGenerics_02(String title){
+		super(title);
+
+		add(cvs);
+		setSize(420,300);
 		num_list.add("1200");
-		num_list.add(new Point(300, 100));
-		num_list.add(1300);
+		num_list.add(new Point(300, 100).toString());
+		num_list.add("1300");
 		num_list.add("1400");
 		num_list.add("1500");
 		num_list.add("1600");
 	}
-
-	public void paint(Graphics g){
-		super.paint(g);
-
-		for(int ii = 0 ; ii < num_list.size() ; ii++){
-			String s = num_list.get(ii);
-			g.drawString(s, 100, ii*20);
-		}
+	public static void main(String[] args){
+		new ExGenerics_02("ExGenerics_02").setVisible(true);
 	}
 }

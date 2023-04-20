@@ -58,7 +58,6 @@ public class ToyBoxTest
 	carBox.add(t2);
 	showToysinBox(carBox);
 
-	// Create a "bearBox" with proper sentence
 	ToyBox<Bear> bearBox = new ToyBox<Bear>();
 	System.out.println("Creating a bearBox...");
 	Bear b1 = new Bear("Bear1", 1000);
@@ -72,7 +71,6 @@ public class ToyBoxTest
        
        // Next, create Box<Toy>
        
-     // Create a "toyBox" with proper sentence
        ToyBox<Toy> toyBox = new ToyBox<Toy>();
        System.out.println("Creating a toyBox..."); 
        
