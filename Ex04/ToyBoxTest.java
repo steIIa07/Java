@@ -37,12 +37,12 @@ public class ToyBoxTest
 		if(toy instanceof Car)
 		    {
 			Car car = (Car) toy;
-			System.out.println("Car: " + car.getModel() + ", " + car.getWeight() + "kg");
+			System.out.println("Car: " + car.getName() + ", " + car.getNumber() + "kg");
 		    }
 		else if(toy instanceof Bear)
 		    {
 			Bear bear = (Bear) toy;
-			System.out.println("Bear: " + bear.getName() + ", " + bear.getWeight() + "kg");
+			System.out.println("Bear: " + bear.getName() + ", " + bear.getNumber() + "kg");
 		    }
 	    }
     }
@@ -58,7 +58,6 @@ public class ToyBoxTest
 	carBox.add(t2);
 	showToysinBox(carBox);
 
-	// Create a "bearBox" with proper sentence
 	ToyBox<Bear> bearBox = new ToyBox<Bear>();
 	System.out.println("Creating a bearBox...");
 	Bear b1 = new Bear("Bear1", 1000);
@@ -94,12 +93,33 @@ public class ToyBoxTest
 
 class Toy
 {
-    // Complete Toy Class
+    private String name;
+    private int number;
+
+    protected Toy(String name, int w)
+    {
+	this.name = name;
+	this.number = number;
+    }
+
+     public String getName()
+    {
+	return name;
+    }
+    public int getNumber()
+    {
+	return number;
+    }
 }
 
 // Car class and Bear class to extend the Toy class
 class Car extends Toy
 {
+    public Car(String name, int number)
+    {
+	super(name, number);
+    }
+    /*
     private String model;
     private int weight;
     
@@ -117,10 +137,17 @@ class Car extends Toy
     {
 	return weight;
     }
+    */
 }
 
 class Bear extends Toy
 {
+    public Bear(String name, int number)
+    {
+	super(name, number);
+    }
+	
+    /*
     private String name;
     private int weight;
     
@@ -139,4 +166,5 @@ class Bear extends Toy
     {
         return weight;
     }
+    */
 }
