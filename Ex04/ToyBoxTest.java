@@ -11,23 +11,23 @@ class ToyBox<T>
     
     public void add(T t)
     {
-	v.add(t); // Complete add method with proper argument and method body                     
+	    v.add(t); // Complete add method with proper argument and method body                     
     }
 
     public T get(int index)
     {
-	v.get(index);// Complete get method with proper argument and method body                     
+	    return v.get(index);
     }
     
     public int getSize()
     {
-	return v.size(); // Complete getSize method with proper argument and method body
+	    return v.size(); // Complete getSize method with proper argument and method body
     }
 }
 
 public class ToyBoxTest
 {
-    public static void showToysinBox(Toybox<? extends Toy> box)
+    public static void showToysinBox(ToyBox<? extends Toy> box)
     {
 	// Complete showAnimalsinToyBox method with proper argument and method body                     
 	for (int i = 0; i < box.getSize(); i++)
