@@ -1,8 +1,7 @@
 import java.util.Iterator;
 import java.util.ArrayList;
 
-class ToyBox<T> /* Insert code for being iterable class */ {
-
+class ToyBox<T> implements Iterable<T> {
     private ArrayList<T> v = new ArrayList<T>();          
 
     public void add(T t) {
@@ -17,26 +16,35 @@ class ToyBox<T> /* Insert code for being iterable class */ {
         return v.size();
     }
 
-    /* write code for iterator method -- it returns an object of the ToyBoxIterator */
-    // ...................................
+    public Iterator<T> iterator() {
+        return new ToyBoxIterator();
+    }
 
   // ToyBoxIterator class -- inner class
-  private class ToyBoxIterator /* complete here to implment Iterator interface */ {
+    private class ToyBoxIterator implements Iterator<T> {
       int idx; // counter to point current posion of an element of the vector for iterating
 
       // Constructor
-      public ToyBoxIterator() {
+    public ToyBoxIterator() {
         idx = 0;
-      }
+    }
 
       // Method to test whether more elements are available
-      public boolean hasNext() {
-         // complete hasNext() method 
-         // ...................................
-      }
+    public boolean hasNext() {
+        return idx < getSize();
+    }
 
       // Next implement 1) next() method and 2) remove() method
-      // ...................................
+        public T next() {
+            if(!hasNext())
+                throw new java.util.NoSuchElementException();
+
+            return v.get(idx++);
+        }
+
+        public void remove() {
+            v.remove(idx);
+        }
 
   } // end of ToyBoxIterator
 
