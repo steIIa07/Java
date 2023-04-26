@@ -21,19 +21,37 @@
       }
       public String toString()
       {
-         return new String(productItem + ", " + noItem + ", " + orderInfo) ;
+         return new String(productItem + ", " + noItem + ", " + orderInfo);
       }
 
       @Override
       public int compareTo(SortableDataStore o) 
       {
-         int result = o.productItem.compareTo(productItem);
-         return result == 0 ? o.noItem.compareTo(noItem) : result;
+         if(o == null)
+         {
+            return 1;
+         }
+
+         if (productItem == null && o.productItem == null) 
+         {
+            return 0;
+         }
+         else if (productItem == null)
+         {
+            return -1;
+         }
+         else if (o.productItem == null) 
+         {
+            return 1;
+         }
+
+         int result = productItem.compareTo(o.productItem);
+         return result == 0 ? noItem.compareTo(o.noItem) : result;
       }
 
     } // end of DataStore
 
-   public class ProductOrderWorking extends JFrame 
+   public class ProductOrder extends JFrame 
    {
   	   protected String list_Contents, noOrder, orderInfo;
 	   protected SortableDataStore[] v = new SortableDataStore[20];
@@ -48,7 +66,7 @@
       protected int idx = 0;
       protected int lastIndex = -1;
 
-      public ProductOrderWorking()
+      public ProductOrder()
       {
          getContentPane().setLayout(new BorderLayout());
          topp = new JPanel();
@@ -109,13 +127,6 @@
 
    }  // Product Order constructor
 
-
-
-/*****
-Fill in code for event listeners.
-You can use inner classes for the listeners.
-*****/
-
    class ProductItemListener implements ListSelectionListener
    {
       @Override
@@ -130,9 +141,11 @@ You can use inner classes for the listeners.
       @Override
       public void actionPerformed(ActionEvent e) 
       {
-         v[idx] = new SortableDataStore(orderInfo, noOrder, list_Contents);
+         noOrder = nofield.getText();
+         orderInfo = infofield.getText();
+         v[idx] = new SortableDataStore(list_Contents, noOrder, orderInfo);
          idx++;
-         lastIndex = idx != 20 ? idx : -1;
+         lastIndex = idx > 20 ? -1 : idx;
       }
       
    }
@@ -142,22 +155,22 @@ You can use inner classes for the listeners.
       @Override
       public void actionPerformed(ActionEvent e) 
       {
-         Object source = e.getSource();
-         if(source == sortb)
+         Arrays.sort(v);
+         contentsarea.setText("");
+         for(int i = 0; i < lastIndex; i++) 
          {
-            Arrays.sort(v);  
+            contentsarea.append(v[i].toString() + "\n");
          }
       }
-      
    }
 
    class ResetButtonListener implements ActionListener
    {
-
       @Override
       public void actionPerformed(ActionEvent e) 
       {
-         v = null;
+         contentsarea.setText("");
+         v = new SortableDataStore[20];
          idx = 0;
          lastIndex = -1;
       }
@@ -169,18 +182,17 @@ You can use inner classes for the listeners.
       @Override
       public void actionPerformed(ActionEvent e) 
       {
-         for (SortableDataStore s : v) 
+         contentsarea.setText("");
+         for(int i = 0; i < lastIndex; i++) 
          {
-            contentsarea.append(s.toString() + "\n");  
+            contentsarea.append(v[i].toString() + "\n");
          }
-         
       } 
    }
 
-
    public static void main (String args[])
    {
-      ProductOrderWorking f = new ProductOrderWorking();
+      ProductOrder f = new ProductOrder();
       f.setTitle("Product Order");
       f.setSize(500,400);
       f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
