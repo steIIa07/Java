@@ -24,6 +24,7 @@
          return new String(productItem + ", " + noItem + ", " + orderInfo);
       }
 
+      // Q
       @Override
       public int compareTo(SortableDataStore o) 
       {
