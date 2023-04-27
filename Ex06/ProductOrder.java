@@ -33,9 +33,18 @@ class SortableDataStore  implements Comparable<SortableDataStore> {
 	} else if (o.productItem == null) {
             return 1;
 	}
+
+	if (noItem == null && o.noItem == null) {
+            return 0;
+	} else if (noItem == null) {
+            return -1;
+	} else if (o.noItem == null) {
+            return 1;
+	}
 	
 	int result = productItem.compareTo(o.productItem);
         return result == 0 ? noItem.compareTo(o.noItem) : result;
+	}
     }
     
 } // end of DataStore
