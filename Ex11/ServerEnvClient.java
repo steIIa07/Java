@@ -6,8 +6,9 @@ public class ServerEnvClient {
 	String[] infos = new String[2];
         ServerEnv obj = null;
         try {
-	    obj = (ServerEnv)Naming.lookup("//localhost:4321/ServerEnv");
-            infos = obj.getInfo(); 
+	    //obj = (ServerEnv)Naming.lookup("//localhost:4321/ServerEnv");
+	    obj = (ServerEnv)Naming.lookup("ServerEnv");
+	    infos = obj.getInfo(); 
         } catch (Exception e) { 
             System.out.println("ServerEnvClient exception: " + e.getMessage()); 
             e.printStackTrace(); 

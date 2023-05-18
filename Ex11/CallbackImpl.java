@@ -25,7 +25,7 @@ public class CallbackImpl extends UnicastRemoteObject implements Callback {
       return server.sayThanks(this, lang);
     }
     public String sayThanksJapanese(){
-      return new String("Arigato!");
+      return new String("Arigatou gozaimasu!");
     }
     public String sayThanksEnglish(){
       return new String("Thank you!");
