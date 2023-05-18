@@ -9,17 +9,17 @@ public class ServerEnvImpl extends UnicastRemoteObject implements ServerEnv{
     }
 
     @Override
-    public Info getInfo() throws RemoteException {
-        String server = System.getenv("HOSTNAME");
-        String os = System.getProperty("os.name");
-        return new Info(server, os);
+    public String[] getInfo() throws RemoteException {
+	String[] infos = new String[2];
+	infos[0] = System.getenv("HOSTNAME");
+        infos[1] = System.getProperty("os.name");
+        return infos;
     }
     public static void main(String args[]) { 
-
-        // Create and install a security manager 
-        if (System.getSecurityManager() == null) { 
-	    System.setSecurityManager(new SecurityManager()); 
-        } 
+        // // Create and install a security manager 
+        // if (System.getSecurityManager() == null) { 
+	    // System.setSecurityManager(new SecurityManager()); 
+        // } 
         try { 
 	   ServerEnvImpl obj = new ServerEnvImpl();
 	   Naming.rebind("//localhost:4321/ServerEnv", obj); 
