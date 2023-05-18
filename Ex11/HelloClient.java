@@ -11,11 +11,8 @@ public class HelloClient {
     // interface 
     Hello obj = null; 
 
-    try { 
-            obj = (Hello)Naming.lookup("//" + "/HelloServer");
-//          obj = (Hello)Naming.lookup("//localhost:4321" + "/HelloServer");
-//   obj = (Hello)Naming.lookup("//ecnet:1099" + "/HelloServer");
-//	 getCodeBase().getHost() + "/HelloServer"); 
+    try {
+	obj = (Hello)Naming.lookup("//localhost:4321" + "/HelloServer");
 	    message = obj.sayHello(); 
 	} catch (Exception e) { 
 	    System.out.println("HelloClient exception: " + 
@@ -25,3 +22,15 @@ public class HelloClient {
     System.out.println("Message = " + message);
   } // end of main
 } // end of HelloClient
+
+/*
+In std5 environment
+excute order
+% javac *.java
+% rmic HelloImpl
+% rmiregistry 4321 &
+% java -Djava.security.policy=policy HelloImpl
+
+another terminal
+% java -Djava.security.policy=policy HelloClient
+ */

@@ -21,8 +21,8 @@ public class ServerEnvImpl extends UnicastRemoteObject implements ServerEnv{
 	    System.setSecurityManager(new SecurityManager()); 
         } 
         try { 
-	    HelloImpl obj = new HelloImpl();
-        Naming.rebind("/HelloServer", obj); 
+	   ServerEnvImpl obj = new ServerEnvImpl();
+	   Naming.rebind("//localhost:4321/ServerEnv", obj); 
 
 	    System.out.println("ServerEnv Server bound in registry"); 
         } catch (Exception e) { 
