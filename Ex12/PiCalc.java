@@ -1,3 +1,4 @@
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
 import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
@@ -25,7 +26,8 @@ public class PiCalc {
     private static double calculatePiParallel() {
         return 4.0 * IntStream.range(0, NUM_POINTS)
                 .parallel()
-                .mapToDouble((a) -> 4.0 * 1.0 / NUM_POINTS * (sqrt(pow(random(),2)+pow(random(),2)) <= 1 ? 1 : 0))
+                .mapToDouble((a) -> 4.0 * 1.0 / NUM_POINTS * 
+                (sqrt(pow(ThreadLocalRandom.current().nextDouble(),2)+pow(ThreadLocalRandom.current().nextDouble(),2)) <= 1 ? 1 : 0))
                 .sum() / 4;
     }
 
